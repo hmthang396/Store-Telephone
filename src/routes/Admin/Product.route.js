@@ -21,7 +21,6 @@ var storage = multer.diskStorage({
     },
     filename: function(req, file, cb) {
         try {
-            console.log("filename");
             cb(null, Date.now() + "." + file.originalname.split(".")[1]);
         } catch (err) {
             console.log(err);
@@ -62,7 +61,25 @@ router.get("/PrdOpt/Destroy/:id", PrdOpt.delete);
 // Product & Image
 router.get("/PrdCol", PrdCol.get);
 router.get("/PrdCol/:id", PrdCol.getById);
-router.post("/PrdCol", PrdCol.post);
-router.post("/PrdCol/:id", PrdCol.postById);
+router.post(
+    "/PrdCol",
+    upload.fields([
+        { name: "file-input1", maxCount: 1 },
+        { name: "file-input2", maxCount: 1 },
+        { name: "file-input3", maxCount: 1 },
+        { name: "file-input4", maxCount: 1 },
+    ]),
+    PrdCol.post
+);
+router.post(
+    "/PrdCol/:id",
+    upload.fields([
+        { name: "file-input1", maxCount: 1 },
+        { name: "file-input2", maxCount: 1 },
+        { name: "file-input3", maxCount: 1 },
+        { name: "file-input4", maxCount: 1 },
+    ]),
+    PrdCol.postById
+);
 router.get("/PrdCol/Destroy/:id", PrdCol.delete);
 module.exports = router;

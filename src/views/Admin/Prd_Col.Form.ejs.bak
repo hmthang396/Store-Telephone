@@ -53,30 +53,181 @@
 			<section class="content">
 				<div class="container-fluid">
 					<% if(Message == 'Create') {%>
-					<form action="/Admin/PrdCol" method="POST">
+					<form action="/Admin/PrdCol" method="POST" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-md-3">
 								<div class="card card-primary">
 									<div class="card-header">
 										<h3 class="card-title">Hình ảnh sản phẩm</h3>
 									</div>
-									<div class="card-body">
-										<ul class="">
+									<div class="card-body" style="text-align:center;">
+										<ul class="" style="list-style-type: none;padding-left: 0px;">
 											<li>
-												<div>
-													<input class="" type="file"/>
-													<img src="" style="" />
-												</div>
+												<label for="file-input1">
+													<img src="/Image/sm-1.jpg" class="col-md-8" />
+												</label>
+												<input class="col-sm-2" id='file-input1' name='file-input1' type="file" style="display: none;" required/>
+											</li>
+											<li>
+												<label for="file-input2">
+													<img src="/Image/sm-1.jpg" class="col-md-8" />
+												</label>
+												<input class="col-md-3" id='file-input2' name='file-input2' type="file" style="display: none;" required/>
+											</li>
+											<li>
+												<label for="file-input3">
+													<img src="/Image/sm-1.jpg" class="col-md-8" />
+												</label>
+												<input class="col-md-3" id='file-input3' name='file-input3' type="file" style="display: none;" required/>
+											</li>
+											<li>
+												<label for="file-input4">
+													<img src="/Image/sm-1.jpg" class="col-md-8" />
+												</label>
+												<input class="col-md-3" id='file-input4' name='file-input4' type="file" style="display: none;" required/>
 											</li>
 										</ul>
-									<div>
+									</div>
 								</div>
+							</div>
+							<div class="col-md-9">
+								<div class="card card-danger">
+									<div class="card-header">
+										<h3 class="card-title">Thông tin Product & Color </h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label>Danh Mục <code>*</code></label>
+											<select class="form-control" name="categoryId" id="categoryId" required>
+												<option value='null'>Chọn danh mục sản phẩm</option>
+												<% if(Category != null) {%>
+													<% Category.forEach(function(x){ %>
+														<option value="<%= x.id %>"><%= x.title %></option>
+													<% }); %>
+												<% } %>
+											</select>
+										</div>
+										
+										<div class="form-group">
+											<label>Sản phẩm <code>*</code></label>
+											<select class="form-control" name="productId" id="productId" required>
+												<option value='null'>Chọn thông số cho sản phẩm</option>
+											</select>
+										</div>
+										
+										<div class="form-group">
+											<label>Color <code>*</code></label>
+											<select class="form-control" name="colorId" id="colorId" required>
+												<option value=null>Chọn option cho sản phẩm</option>
+												<% if(Color != null) {%>
+													<% Color.forEach(function(x){ %>
+														<option value="<%= x.id %>"><%= x.title %></option>
+													<% }); %>
+												<% } %>
+											</select>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<div class="card-footer">
+								<button type="submit" class="btn btn-info">Upload</button>
 							</div>
 						</div>
 					</form>
 					<% } %>
 					
 					<% if(Message == 'Update') {%>
+					<form action="/Admin/PrdCol/<%= PrdCol.id %>" method="POST" enctype="multipart/form-data">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">Hình ảnh sản phẩm</h3>
+									</div>
+									<div class="card-body" style="text-align:center;">
+										<ul class="" style="list-style-type: none;padding-left: 0px;">
+											<li>
+												<label for="file-input1">
+													<img src="<%= PrdCol.image1 %>" class="col-md-8" />
+												</label>
+												<input class="col-sm-2" id='file-input1' name='file-input1' type="file" style="display: none;" required/>
+											</li>
+											<li>
+												<label for="file-input2">
+													<img src="<%= PrdCol.image2 %>" class="col-md-8" />
+												</label>
+												<input class="col-md-3" id='file-input2' name='file-input2' type="file" style="display: none;" required/>
+											</li>
+											<li>
+												<label for="file-input3">
+													<img src="<%= PrdCol.image3 %>" class="col-md-8" />
+												</label>
+												<input class="col-md-3" id='file-input3' name='file-input3' type="file" style="display: none;" required/>
+											</li>
+											<li>
+												<label for="file-input4">
+													<img src="<%= PrdCol.image4 %>" class="col-md-8" />
+												</label>
+												<input class="col-md-3" id='file-input4' name='file-input4' type="file" style="display: none;" required/>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-9">
+								<div class="card card-danger">
+									<div class="card-header">
+										<h3 class="card-title">Thông tin Product & Color </h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label>Danh Mục <code>*</code></label>
+											<select class="form-control" name="categoryId" id="categoryId" required>
+												<option value='null'>Chọn danh mục sản phẩm</option>
+												<% if(Category != null) {%>
+													<% Category.forEach(function(x){ %>
+														<% if(Product.categoryId == x.id) {%>
+															<option selected value="<%= x.id %>"><%= x.title %></option>
+														<% }else{ %>
+															<option value="<%= x.id %>"><%= x.title %></option>
+														<% } %>
+													<% }); %>
+												<% } %>
+											</select>
+										</div>
+										
+										<div class="form-group">
+											<label>Sản phẩm <code>*</code></label>
+											<select class="form-control" name="productId" id="productId" required>
+												<option value="<%= Product.id %>"><%= Product.title %></option>
+											</select>
+										</div>
+										
+										<div class="form-group">
+											<label>Color <code>*</code></label>
+											<select class="form-control" name="colorId" id="colorId" required>
+												<option value=null>Chọn option cho sản phẩm</option>
+												<% if(Color != null) {%>
+													<% Color.forEach(function(x){ %>
+														<% if(PrdCol.colorId == x.id) {%>
+															<option selected value="<%= x.id %>"><%= x.title %></option>
+														<% }else{ %>
+															<option value="<%= x.id %>"><%= x.title %></option>
+														<% } %>
+													<% }); %>
+												<% } %>
+											</select>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<div class="card-footer">
+								<button type="submit" class="btn btn-info">Upload</button>
+							</div>
+						</div>
+					</form>
 					<% } %>
 				</div>
 			</section>
@@ -131,6 +282,39 @@
     <script src="../plugins/codemirror/mode/css/css.js"></script>
     <script src="../plugins/codemirror/mode/xml/xml.js"></script>
     <script src="../plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script>
+	$(function () {
+		$('input[type=file]').change((event)=>{
+			$(`label[for=${event.target.id}] img`).attr('src',URL.createObjectURL(event.target.files[0]));
+		});
+		$("#categoryId").change((event) => {
+                let categoryId = event.target.value;
+				let content = `<option value='null'>Chọn thông số cho sản phẩm</option>`;
+				$("#productId").html(content);
+				if(categoryId !== 'null' && categoryId !== null){
+					$.ajax({
+						url :`../../Product/Product/Category/${categoryId}`,
+						dataType : 'json',
+						type : 'get',
+						data:{ categoryId : categoryId},
+					}).done(function (response){
+						if(response.Data.length > 0 ){
+							response.Data.forEach(product =>{
+								content = content + `<option value='${product.id}'>${product.title}</option>`;
+							})
+							$("#productId").html(content);
+						}else{
+							content = `<option value='null'>Chọn thông số cho sản phẩm</option>`;
+							$("#productId").html(content);
+						}
+					});
+				}else{
+					content = `<option value='null'>Chọn thông số cho sản phẩm <option>`;
+					$("#productId").html(content);
+				}
+            });
+	})
+	</script>
 </body>
 
 </html>
