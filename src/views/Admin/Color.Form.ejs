@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin</title>
+    <!-- Favicon.ico-->
+    <link rel="shortcut icon" href="" />
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css" />
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css" />
+    <!-- summernote -->
+    <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css" />
+</head>
+
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Preloader 
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__wobble" src="../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60" />
+        </div>
+        -->
+        <!-- Navbar -->
+        <%- include('../Layout/SideBar') %>
+        <!-- /.navbar -->
+
+        <!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+					  <div class="col-sm-6">
+						<h1>General Color</h1>
+					  </div>
+					  <div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+						  <li class="breadcrumb-item"><a href="/Admin">Home</a></li>
+						  <li class="breadcrumb-item active">Thêm mới màu</li>
+						</ol>
+					  </div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<% if(Message == 'Create') {%>
+					<form action="/Admin/Color" method="POST">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">Thông tin hàng hóa</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="title">Tiêu đề <code>*</code></label>
+											<input type="text" class="form-control" id="title" name="title" placeholder="Tiêu đề" required>
+										</div>
+										<div class="form-group">
+											<label for="hex">Mã màu <code>*</code></label>
+											<input type="color" class="form-control" id="hex" name="hex" placeholder="Mã màu" required>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card-footer">
+								<button type="submit" class="btn btn-info">Upload</button>
+							</div>
+						</div>
+					</form>
+					<% } %>
+					
+					<% if(Message == 'Update') {%>
+					<form action="/Admin/Color/<%= Color.id %>" method="POST">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">Thông tin hàng hóa</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="title">Tiêu đề <code>*</code></label>
+											<input type="text" value="<%= Color.title %>" class="form-control" id="title" name="title" placeholder="Tiêu đề" required>
+										</div>
+										<div class="form-group">
+											<label for="hex">Mã màu <code>*</code></label>
+											<input type="color" value="<%= Color.hex %>" class="form-control" id="hex" name="hex" placeholder="Mã màu" required>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card-footer">
+								<button type="submit" class="btn btn-info">Upload</button>
+							</div>
+						</div>
+					</form>
+					<% } %>
+				</div>
+			</section>
+			
+		</div>
+
+        <!-- Main Footer -->
+        <%- include('../Layout/footer') %>
+        <!-- ./main Footer -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.js"></script>
+
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="../plugins/raphael/raphael.min.js"></script>
+    <script src="../plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="../plugins/jquery-mapael/maps/usa_states.min.js"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="../dist/js/pages/dashboard2.js"></script>
+
+    <!-- bs-custom-file-input -->
+    <script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+    <script>
+        $(function() {
+            bsCustomFileInput.init();
+        });
+    </script>
+
+    <!-- Summernote -->
+    <script src="../plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- Summernote -->
+    <script src="../plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- CodeMirror -->
+    <script src="../plugins/codemirror/codemirror.js"></script>
+    <script src="../plugins/codemirror/mode/css/css.js"></script>
+    <script src="../plugins/codemirror/mode/xml/xml.js"></script>
+    <script src="../plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+
+    <script>
+        $(function() {});
+    </script>
+</body>
+
+</html>

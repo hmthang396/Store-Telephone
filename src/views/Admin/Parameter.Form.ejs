@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin</title>
+    <!-- Favicon.ico-->
+    <link rel="shortcut icon" href="" />
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css" />
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css" />
+    <!-- summernote -->
+    <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css" />
+</head>
+
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <%- include('../Layout/SideBar') %>
+        <!-- /.navbar -->
+		
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+					  <div class="col-sm-6">
+						<h1>General Form</h1>
+					  </div>
+					  <div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+						  <li class="breadcrumb-item"><a href="/Admin">Home</a></li>
+						  <li class="breadcrumb-item active">Thêm mới thông số</li>
+						</ol>
+					  </div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<% if(Message == 'Create') {%>
+					<form action="/Admin/Parameter" method="POST">
+						<div class="row">
+							<!-- left column -->
+							<div class="col-md-6">
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">Thông tin hàng hóa</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="title">Tiêu đề <code>*</code></label>
+											<input type="text" class="form-control" id="title" name="title" placeholder="Tiêu đề" required>
+										</div>
+										<div class="form-group">
+											<label for="brand">Thương hiệu <code>*</code></label>
+											<input type="text" class="form-control" id="brand" name="brand" placeholder="Thương hiệu" required>
+										</div>
+										<div class="form-group">
+											<label for="origin">Xuất xứ <code>*</code></label>
+											<input type="text" class="form-control" id="origin" name="origin" placeholder="Xuất xứ" required>
+										</div>
+										<div class="form-group">
+											<label for="release_time">Ngày ra mắt <code>*</code></label>
+											<input type="text" class="form-control" id="release_time" name="release_time" placeholder="Ngày ra mắt (MM/YYYY)" required>
+										</div>
+										<div class="form-group">
+											<label for="warranty_period">Bảo hành <code>*</code></label>
+											<input type="text" class="form-control" id="warranty_period" name="warranty_period" placeholder="Bảo hành  (MM tháng)" required>
+										</div>
+									</div>
+								</div>
+								
+								<div class="card card-warning">
+									<div class="card-header">
+										<h3 class="card-title">RAM - Lưu trữ</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="ram">RAM <code>*</code></label>
+											<input type="text" class="form-control" id="ram" name="ram" placeholder="RAM" required>
+										</div>
+										<div class="form-group">
+											<label for="internal_storage">Bộ nhớ trong <code>*</code></label>
+											<input type="text" class="form-control" id="internal_storage" name="internal_storage" placeholder="Bộ nhớ trong" required>
+										</div>
+										<div class="form-group">
+											<label for="external_storage">Thẻ nhớ ngoài <code>*</code></label>
+											<input type="text" class="form-control" id="external_storage" name="external_storage" placeholder="Thẻ nhớ ngoài" required>
+										</div>
+									</div>
+								</div>
+								
+								<div class="card card-secondary">
+									<div class="card-header">
+										<h3 class="card-title">Selfie</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="s_resolution">Resolution <code>*</code></label>
+											<input type="text" class="form-control" id="s_resolution" name="s_resolution" placeholder="Resolution" required>
+										</div>
+										<div class="form-group">
+											<label for="s_video">Quay phim <code>*</code></label>
+											<textarea id="summernote1" name="s_video" required>
+											</textarea>
+										</div>
+										<div class="form-group">
+											<label for="s_feature">Tính năng <code>*</code></label>
+											<textarea id="summernote2" name="s_feature" required>
+											</textarea>
+										</div>
+									</div>
+								</div>
+								
+								<div class="card card-secondary">
+									<div class="card-header">
+										<h3 class="card-title">Camera sau</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="r_resolution">Resolution <code>*</code></label>
+											<input type="text" class="form-control" id="r_resolution" name="r_resolution" placeholder="Resolution" required>
+										</div>
+										<div class="form-group">
+											<label for="r_video">Quay phim <code>*</code></label>
+											<textarea id="summernote3" name="r_video" required>
+											</textarea>
+										</div>
+										<div class="form-group">
+											<label for="r_feature">Tính năng <code>*</code></label>
+											<textarea id="summernote4" name="r_feature" required>
+											</textarea>
+										</div>
+									</div>
+								</div>
+								
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">Thông tin pin & Sạc</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="p_type">Loại PIN <code>*</code></label>
+											<input type="text" class="form-control" id="p_type" name="p_type" placeholder="Loại PIN" required>
+										</div>
+										<div class="form-group">
+											<label for="p_capacity">Dung lượng pin <code>*</code></label>
+											<input type="text" class="form-control" id="p_capacity" name="p_capacity" placeholder="Dung lượng pin (xxxx mAh)" required>
+										</div>
+										<div class="form-group">
+											<label for="p_other">Thông tin khác <code>*</code></label>
+											<textarea id="summernote8" name="p_other" required>
+											</textarea>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							
+							<!-- right column -->
+							<div class="col-md-6">
+								<div class="card card-info">
+									<div class="card-header">
+										<h3 class="card-title">Thiết kế & Trọng lượng</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="dimension">Kích thước <code>*</code></label>
+											<input type="text" class="form-control" id="dimension" name="dimension" placeholder="Kích thước (W x H x D mm)" required>
+										</div>
+										<div class="form-group">
+											<label for="weight">Trọng lượng <code>*</code></label>
+											<input type="text" class="form-control" id="weight" name="weight" placeholder="Trọng lượng (xxx g)" required>
+										</div>
+										<div class="form-group">
+											<label for="ip">Chuẩn kháng nước / Bụi bẩn <code>*</code></label>
+											<input type="text" class="form-control" id="ip" name="ip" placeholder="IPxx" required>
+										</div>
+									</div>
+								</div>
+								<div class="card card-danger">
+									<div class="card-header">
+										<h3 class="card-title">Bộ xử lý</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="processor">Phiên bản CPU <code>*</code></label>
+											<input type="text" class="form-control" id="processor" name="processor" placeholder="Phiên bản CPU" required>
+										</div>
+										<div class="form-group">
+											<label for="operating_system">Hệ điều hành <code>*</code></label>
+											<input type="text" class="form-control" id="operating_system" name="operating_system" placeholder="Hệ điều hành" required>
+										</div>
+										<div class="form-group">
+											<label for="detail_processor">Số nhân - Tốc độ tối đa <code>*</code></label>
+											<input type="text" class="form-control" id="detail_processor" name="detail_processor" placeholder="Số nhân - Tốc độ tối đa" required>
+										</div>
+										<div class="form-group">
+											<label for="graphic">GPU <code>*</code></label>
+											<input type="text" class="form-control" id="graphic" name="graphic" placeholder="GPU" required>
+										</div>
+									</div>
+								</div>
+								<div class="card card-success">
+									<div class="card-header">
+										<h3 class="card-title">Màn hình</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="size">Kích thước màn hình <code>*</code></label>
+											<input type="text" class="form-control" id="size" name="size" placeholder="Kích thước màn hình" required>
+										</div>
+										<div class="form-group">
+											<label for="technology">Công nghệ màn hình <code>*</code></label>
+											<input type="text" class="form-control" id="technology" name="technology" placeholder="Công nghệ màn hình" required>
+										</div>
+										<div class="form-group">
+											<label for="type">Chuẩn màn hình <code>*</code></label>
+											<input type="text" class="form-control" id="type" name="type" placeholder="Chuẩn màn hình" required>
+										</div>
+										<div class="form-group">
+											<label for="resolution">Độ phân giải <code>*</code></label>
+											<input type="text" class="form-control" id="resolution" name="resolution" placeholder="Độ phân giải" required>
+										</div>
+										<div class="form-group">
+											<label for="frequency">Tần số quét <code>*</code></label>
+											<input type="text" class="form-control" id="frequency" name="frequency" placeholder="Tần số quét" required>
+										</div>
+										<div class="form-group">
+											<label for="glass">Chất liệu mặt kính <code>*</code></label>
+											<input type="text" class="form-control" id="glass" name="glass" placeholder="Chất liệu mặt kính" required>
+										</div>
+									</div>
+								</div>
+								
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">Giao tiếp & kết nối</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="sim_number">Số khe SIM <code>*</code></label>
+											<input type="text" class="form-control" id="sim_number" name="sim_number" placeholder="Số khe SIM" required>
+										</div>
+										<div class="form-group">
+											<label for="type_sim">Loại SIM <code>*</code></label>
+											<input type="text" class="form-control" id="type_sim" name="type_sim" placeholder="Loại SIM" required>
+										</div>
+										<div class="form-group">
+											<label for="bluetooth">Bluetooth <code>*</code></label>
+											<input type="text" class="form-control" id="bluetooth" name="bluetooth" placeholder="Bluetooth" required>
+										</div>
+										<div class="form-group">
+											<label for="wifi">Wifi <code>*</code></label>
+											<input type="text" class="form-control" id="wifi" name="wifi" placeholder="Wifi" required>
+										</div>
+										<div class="form-group">
+											<label for="gps">GPS <code>*</code></label>
+											<textarea id="summernote5" name="gps" required>
+											</textarea>
+										</div>
+										<div class="form-group">
+											<label for="data_connectivity">Hỗ trợ mạng <code>*</code></label>
+											<textarea id="summernote6" name="data_connectivity" required>
+											</textarea>
+										</div>
+										<div class="form-group">
+											<label for="charger_connector">Cổng sạc <code>*</code></label>
+											<input type="text" class="form-control" id="charger_connector" name="charger_connector" placeholder="Cổng sạc" required>
+										</div>
+										<div class="form-group">
+											<label for="audio_connector">Audio Jack <code>*</code></label>
+											<input type="text" class="form-control" id="audio_connector" name="audio_connector" placeholder="Audio Jack" required>
+										</div>
+										<div class="form-group">
+											<label for="other_connector">Kết nối khác <code>*</code></label>
+											<textarea id="summernote7" name="other_connector" required>
+											</textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="card-footer">
+								<button type="submit" class="btn btn-info">Upload</button>
+							</div>
+						</div>
+					</form>
+					<% } %>
+					
+					<% if(Message == 'Update') {%>
+					<form action="/Admin/Parameter/<%= Parameter.id %>" method="POST">
+						<div class="row">
+							<!-- left column -->
+							<div class="col-md-6">
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">Thông tin hàng hóa</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="title">Tiêu đề <code>*</code></label>
+											<input type="text" value="<%= Parameter.title %>" class="form-control" id="title" name="title" placeholder="Tiêu đề" required>
+										</div>
+										<div class="form-group">
+											<label for="brand">Thương hiệu <code>*</code></label>
+											<input type="text" value="<%= Parameter.brand %>" class="form-control" id="brand" name="brand" placeholder="Thương hiệu" required>
+										</div>
+										<div class="form-group">
+											<label for="origin">Xuất xứ <code>*</code></label>
+											<input type="text" value="<%= Parameter.origin %>" class="form-control" id="origin" name="origin" placeholder="Xuất xứ" required>
+										</div>
+										<div class="form-group">
+											<label for="release_time">Ngày ra mắt <code>*</code></label>
+											<input type="text" value="<%= Parameter.release_time %>" class="form-control" id="release_time" name="release_time" placeholder="Ngày ra mắt (MM/YYYY)" required>
+										</div>
+										<div class="form-group">
+											<label for="warranty_period">Bảo hành <code>*</code></label>
+											<input type="text" value="<%= Parameter.warranty_period %>" class="form-control" id="warranty_period" name="warranty_period" placeholder="Bảo hành  (MM tháng)" required>
+										</div>
+									</div>
+								</div>
+								
+								<div class="card card-warning">
+									<div class="card-header">
+										<h3 class="card-title">RAM - Lưu trữ</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="ram">RAM <code>*</code></label>
+											<input type="text" value="<%= Parameter.ram %>" class="form-control" id="ram" name="ram" placeholder="RAM" required>
+										</div>
+										<div class="form-group">
+											<label for="internal_storage">Bộ nhớ trong <code>*</code></label>
+											<input type="text" value="<%= Parameter.internal_storage %>" class="form-control" id="internal_storage" name="internal_storage" placeholder="Bộ nhớ trong" required>
+										</div>
+										<div class="form-group">
+											<label for="external_storage">Thẻ nhớ ngoài <code>*</code></label>
+											<input type="text" value="<%= Parameter.external_storage %>" class="form-control" id="external_storage" name="external_storage" placeholder="Thẻ nhớ ngoài" required>
+										</div>
+									</div>
+								</div>
+								
+								<div class="card card-secondary">
+									<div class="card-header">
+										<h3 class="card-title">Selfie</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="s_resolution">Resolution <code>*</code></label>
+											<input type="text" value="<%= Parameter.s_resolution %>" class="form-control" id="s_resolution" name="s_resolution" placeholder="Resolution" required>
+										</div>
+										<div class="form-group">
+											<label for="s_video">Quay phim <code>*</code></label>
+											<textarea id="summernote1" name="s_video" required>
+											<%= Parameter.s_video %>
+											</textarea>
+										</div>
+										<div class="form-group">
+											<label for="s_feature">Tính năng <code>*</code></label>
+											<textarea id="summernote2" name="s_feature" required>
+											<%= Parameter.s_feature %>
+											</textarea>
+										</div>
+									</div>
+								</div>
+								
+								<div class="card card-secondary">
+									<div class="card-header">
+										<h3 class="card-title">Camera sau</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="r_resolution">Resolution <code>*</code></label>
+											<input type="text" value="<%= Parameter.r_resolution %>" class="form-control" id="r_resolution" name="r_resolution" placeholder="Resolution" required>
+										</div>
+										<div class="form-group">
+											<label for="r_video">Quay phim <code>*</code></label>
+											<textarea id="summernote3" name="r_video" required>
+												<%= Parameter.r_video %>
+											</textarea>
+										</div>
+										<div class="form-group">
+											<label for="r_feature">Tính năng <code>*</code></label>
+											<textarea id="summernote4" name="r_feature" required>
+												<%= Parameter.r_feature %>
+											</textarea>
+										</div>
+									</div>
+								</div>
+								
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">Thông tin pin & Sạc</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="p_type">Loại PIN <code>*</code></label>
+											<input type="text" value="<%= Parameter.p_type %>" class="form-control" id="p_type" name="p_type" placeholder="Loại PIN" required>
+										</div>
+										<div class="form-group">
+											<label for="p_capacity">Dung lượng pin <code>*</code></label>
+											<input type="text" value="<%= Parameter.p_capacity %>" class="form-control" id="p_capacity" name="p_capacity" placeholder="Dung lượng pin (xxxx mAh)" required>
+										</div>
+										<div class="form-group">
+											<label for="p_other">Thông tin khác <code>*</code></label>
+											<textarea id="summernote8" name="p_other" required>
+												<%= Parameter.p_other %>
+											</textarea>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							
+							<!-- right column -->
+							<div class="col-md-6">
+								<div class="card card-info">
+									<div class="card-header">
+										<h3 class="card-title">Thiết kế & Trọng lượng</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="dimension">Kích thước <code>*</code></label>
+											<input type="text" value="<%= Parameter.dimension %>" class="form-control" id="dimension" name="dimension" placeholder="Kích thước (W x H x D mm)" required>
+										</div>
+										<div class="form-group">
+											<label for="weight">Trọng lượng <code>*</code></label>
+											<input type="text" value="<%= Parameter.weight %>" class="form-control" id="weight" name="weight" placeholder="Trọng lượng (xxx g)" required>
+										</div>
+										<div class="form-group">
+											<label for="ip">Chuẩn kháng nước / Bụi bẩn <code>*</code></label>
+											<input type="text" value="<%= Parameter.ip %>" class="form-control" id="ip" name="ip" placeholder="IPxx" required>
+										</div>
+									</div>
+								</div>
+								<div class="card card-danger">
+									<div class="card-header">
+										<h3 class="card-title">Bộ xử lý</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="processor">Phiên bản CPU <code>*</code></label>
+											<input type="text" value="<%= Parameter.processor %>" class="form-control" id="processor" name="processor" placeholder="Phiên bản CPU" required>
+										</div>
+										<div class="form-group">
+											<label for="operating_system">Hệ điều hành <code>*</code></label>
+											<input type="text" value="<%= Parameter.operating_system %>" class="form-control" id="operating_system" name="operating_system" placeholder="Hệ điều hành" required>
+										</div>
+										<div class="form-group">
+											<label for="detail_processor">Số nhân - Tốc độ tối đa <code>*</code></label>
+											<input type="text" value="<%= Parameter.detail_processor %>" class="form-control" id="detail_processor" name="detail_processor" placeholder="Số nhân - Tốc độ tối đa" required>
+										</div>
+										<div class="form-group">
+											<label for="graphic">GPU <code>*</code></label>
+											<input type="text" value="<%= Parameter.graphic %>" class="form-control" id="graphic" name="graphic" placeholder="GPU" required>
+										</div>
+									</div>
+								</div>
+								<div class="card card-success">
+									<div class="card-header">
+										<h3 class="card-title">Màn hình</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="size">Kích thước màn hình <code>*</code></label>
+											<input type="text" value="<%= Parameter.size %>" class="form-control" id="size" name="size" placeholder="Kích thước màn hình" required>
+										</div>
+										<div class="form-group">
+											<label for="technology">Công nghệ màn hình <code>*</code></label>
+											<input type="text" value="<%= Parameter.technology %>" class="form-control" id="technology" name="technology" placeholder="Công nghệ màn hình" required>
+										</div>
+										<div class="form-group">
+											<label for="type">Chuẩn màn hình <code>*</code></label>
+											<input type="text" value="<%= Parameter.type %>" class="form-control" id="type" name="type" placeholder="Chuẩn màn hình" required>
+										</div>
+										<div class="form-group">
+											<label for="resolution">Độ phân giải <code>*</code></label>
+											<input type="text" value="<%= Parameter.resolution %>" class="form-control" id="resolution" name="resolution" placeholder="Độ phân giải" required>
+										</div>
+										<div class="form-group">
+											<label for="frequency">Tần số quét <code>*</code></label>
+											<input type="text" value="<%= Parameter.frequency %>" class="form-control" id="frequency" name="frequency" placeholder="Tần số quét" required>
+										</div>
+										<div class="form-group">
+											<label for="glass">Chất liệu mặt kính <code>*</code></label>
+											<input type="text" value="<%= Parameter.glass %>" class="form-control" id="glass" name="glass" placeholder="Chất liệu mặt kính" required>
+										</div>
+									</div>
+								</div>
+								
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">Giao tiếp & kết nối</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="sim_number">Số khe SIM <code>*</code></label>
+											<input type="text" value="<%= Parameter.sim_number %>" class="form-control" id="sim_number" name="sim_number" placeholder="Số khe SIM" required>
+										</div>
+										<div class="form-group">
+											<label for="type_sim">Loại SIM <code>*</code></label>
+											<input type="text" value="<%= Parameter.type_sim %>" class="form-control" id="type_sim" name="type_sim" placeholder="Loại SIM" required>
+										</div>
+										<div class="form-group">
+											<label for="bluetooth">Bluetooth <code>*</code></label>
+											<input type="text" value="<%= Parameter.bluetooth %>" class="form-control" id="bluetooth" name="bluetooth" placeholder="Bluetooth" required>
+										</div>
+										<div class="form-group">
+											<label for="wifi">Wifi <code>*</code></label>
+											<input type="text" value="<%= Parameter.wifi %>" class="form-control" id="wifi" name="wifi" placeholder="Wifi" required>
+										</div>
+										<div class="form-group">
+											<label for="gps">GPS <code>*</code></label>
+											<textarea id="summernote5" name="gps" required>
+												<%= Parameter.gps %>
+											</textarea>
+										</div>
+										<div class="form-group">
+											<label for="data_connectivity">Hỗ trợ mạng <code>*</code></label>
+											<textarea id="summernote6" name="data_connectivity" required>
+												<%= Parameter.data_connectivity %>
+											</textarea>
+										</div>
+										<div class="form-group">
+											<label for="charger_connector">Cổng sạc <code>*</code></label>
+											<input type="text" value="<%= Parameter.charger_connector %>" class="form-control" id="charger_connector" name="charger_connector" placeholder="Cổng sạc" required>
+										</div>
+										<div class="form-group">
+											<label for="audio_connector">Audio Jack <code>*</code></label>
+											<input type="text" value="<%= Parameter.audio_connector %>" class="form-control" id="audio_connector" name="audio_connector" placeholder="Audio Jack" required>
+										</div>
+										<div class="form-group">
+											<label for="other_connector">Kết nối khác <code>*</code></label>
+											<textarea id="summernote7" name="other_connector" required>
+												<%= Parameter.other_connector %>
+											</textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="card-footer">
+								<button type="submit" class="btn btn-info">Upload</button>
+							</div>
+						</div>
+					</form>
+					<% } %>
+				</div>
+			</section>
+		</div>
+		
+		<!-- /.content-wrapper -->
+		
+		<!-- Main Footer -->
+		<%- include('../Layout/footer') %>
+		<!-- ./main Footer -->
+    </div>
+	
+	
+	<!-- REQUIRED SCRIPTS -->
+	<!-- jQuery -->
+	<script src="../plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- overlayScrollbars -->
+	<script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../dist/js/adminlte.js"></script>
+	
+	<!-- PAGE PLUGINS -->
+	<!-- jQuery Mapael -->
+	<script src="../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+	<script src="../plugins/raphael/raphael.min.js"></script>
+	<script src="../plugins/jquery-mapael/jquery.mapael.min.js"></script>
+	<script src="../plugins/jquery-mapael/maps/usa_states.min.js"></script>
+	
+	<!-- AdminLTE for demo purposes -->
+	<script src="../dist/js/demo.js"></script>
+	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+	<script src="../dist/js/pages/dashboard2.js"></script>
+	
+	
+	<!-- bs-custom-file-input -->
+	<script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../dist/js/adminlte.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="../dist/js/demo.js"></script>
+	<script>
+	$(function () {
+	  bsCustomFileInput.init();
+	});
+	</script>
+	
+	
+	<!-- Summernote -->
+	<script src="../plugins/summernote/summernote-bs4.min.js"></script>
+	<!-- Summernote -->
+	<script src="../plugins/summernote/summernote-bs4.min.js"></script>
+	<!-- CodeMirror -->
+	<script src="../plugins/codemirror/codemirror.js"></script>
+	<script src="../plugins/codemirror/mode/css/css.js"></script>
+	<script src="../plugins/codemirror/mode/xml/xml.js"></script>
+	<script src="../plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	
+	<script>
+	$(function () {
+		// Summernote
+		$('#summernote1').summernote()
+		$('#summernote2').summernote()
+		$('#summernote3').summernote()
+		$('#summernote4').summernote()
+		$('#summernote5').summernote()
+		$('#summernote6').summernote()
+		$('#summernote7').summernote()
+		$('#summernote8').summernote()
+	})
+	</script>
+</body>
+
+</html>

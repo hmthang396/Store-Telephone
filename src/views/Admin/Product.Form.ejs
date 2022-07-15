@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin</title>
+    <!-- Favicon.ico-->
+    <link rel="shortcut icon" href="" />
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css" />
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css" />
+	<!-- summernote -->
+	<link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
+</head>
+
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Preloader 
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__wobble" src="../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60" />
+        </div>
+        -->
+		<!-- Navbar -->
+        <%- include('../Layout/SideBar') %>
+		<!-- /.navbar -->
+		
+		<!-- Content Wrapper. Contains page content -->
+		
+		<!-- /.content-wrapper -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+					  <div class="col-sm-6">
+						<h1>General Form</h1>
+					  </div>
+					  <div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+						  <li class="breadcrumb-item"><a href="/Admin">Home</a></li>
+						  <li class="breadcrumb-item active">Thêm mới sản phẩm</li>
+						</ol>
+					  </div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<% if(Message == 'Create') {%>
+					<form action="/Admin/Product" method="POST" enctype="multipart/form-data">
+						<div class="row">
+							<!-- left column -->
+							<div class="col-md-6">
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">Hình sản phẩm</h3>
+									</div>
+									<div id="imgProduct">
+										
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="exampleInputFile">File input</label>
+											<div class="input-group">
+											  <div class="custom-file">
+												<input type="file" class="" id="exampleInputFile" name="Storage" required>
+												<label class="custom-file-label" for="exampleInputFile">Choose file</label>
+											 </div>
+											</div>
+										 </div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- right column -->
+							<div class="col-md-6">
+								<!-- Form Element sizes -->
+								<div class="card card-success">
+									<div class="card-header">
+										<h3 class="card-title">Thông tin sản phẩm</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label>Tiêu đề <code>*</code></label>
+											<input type="text" class="form-control" placeholder="Enter ..." name="title" required> 
+										</div>
+										<div class="form-group">
+											<label>Danh mục <code>*</code></label>
+											<select class="form-control" name="categoryId" required>
+												<option value=null>Chọn danh mục cho sản phẩm</option>
+												<% if(Category != null) {%>
+													<% Category.forEach(function(x){ %>
+														<option value="<%= x.id %>"><%= x.title %></option>
+													<% }); %>
+												<% } %>
+											</select>
+										</div>
+										<div class="form-group">
+											<label>Thông số sản phẩm <code>*</code></label>
+											<select class="form-control" name="parameterId" required>
+												<option value=null>Chọn thông số cho sản phẩm</option>
+												<% if(Parameter != null) {%>
+													<% Parameter.forEach(function(x){ %>
+														<option value="<%= x.id %>"><%= x.title %></option>
+													<% }); %>
+												<% } %>
+											</select>
+										</div>
+										<div class="form-group">
+											<label>Giá <code>*</code></label>
+											<input type="text" class="form-control" placeholder="Enter ..." name="price" required>
+										</div>
+										<div class="form-group">
+											<label>Tồn kho <code>*</code></label>
+											<input type="number" class="form-control" placeholder="Enter ..." name="stock" required>
+										</div>
+										<div class="form-group">
+											<label>Miêu tả <code>*</code></label>
+											<textarea id="summernote" name="description">
+											</textarea>
+										</div>
+									</div>
+									
+									<div class="card-footer">
+										<button type="submit" class="btn btn-info">Upload</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<% } %>
+					<% if(Message == 'Update') {%>
+					<form action="/Admin/Product/<%= Product.id %>" method="POST" enctype="multipart/form-data">
+						<div class="row">
+							<!-- left column -->
+							<div class="col-md-6">
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">Hình sản phẩm</h3>
+									</div>
+									<div id="imgProduct">
+										<img src=<%= Product.image %> class="product-image" alt="Product Image">
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="exampleInputFile">File input</label>
+											<div class="input-group">
+											  <div class="custom-file">
+												<input type="file" class="" id="exampleInputFile" name="Storage" required>
+												<label class="custom-file-label" for="exampleInputFile">Choose file</label>
+											 </div>
+											</div>
+										 </div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- right column -->
+							<div class="col-md-6">
+								<!-- Form Element sizes -->
+								<div class="card card-success">
+									<div class="card-header">
+										<h3 class="card-title">Thông tin sản phẩm</h3>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label>Tiêu đề <code>*</code></label>
+											<input type="text" value="<%= Product.title %>" class="form-control" placeholder="Enter ..." name="title" required> 
+										</div>
+										<div class="form-group">
+											<label>Danh mục <code>*</code></label>
+											<select class="form-control" name="categoryId" required>
+												<option value=null>Chọn danh mục cho sản phẩm</option>
+												<% if(Category != null) {%>
+													<% Category.forEach(function(x){ %>
+														<% if(x.id == Product.categoryId) {%>
+															<option selected value="<%= x.id %>"><%= x.title %></option>
+														<% }else{ %>
+															<option value="<%= x.id %>"><%= x.title %></option>
+														<% } %>
+													<% }); %>
+												<% } %>
+											</select>
+										</div>
+										<div class="form-group">
+											<label>Thông số sản phẩm <code>*</code></label>
+											<select class="form-control" name="parameterId" required>
+												<option value=null>Chọn thông số cho sản phẩm</option>
+												<% if(Parameter != null) {%>
+													<% Parameter.forEach(function(x){ %>
+														<% if(x.id == Product.parameterId) {%>
+															<option selected value="<%= x.id %>"><%= x.title %></option>
+														<% }else{ %>
+															<option value="<%= x.id %>"><%= x.title %></option>
+														<% } %>
+													<% }); %>
+												<% } %>
+											</select>
+										</div>
+										<div class="form-group">
+											<label>Giá <code>*</code></label>
+											<input type="text" value="<%= Product.price %>" class="form-control" placeholder="Enter ..." name="price" required>
+										</div>
+										<div class="form-group">
+											<label>Tồn kho <code>*</code></label>
+											<input type="number" value="<%= Product.stock %>" class="form-control" placeholder="Enter ..." name="stock" required>
+										</div>
+										<div class="form-group">
+											<label>Miêu tả <code>*</code></label>
+											<textarea id="summernote" name="description"><%= Product.description %></textarea>
+										</div>
+									</div>
+									
+									<div class="card-footer">
+										<button type="submit" class="btn btn-info">Upload</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<% } %>
+				</div>
+			</section>
+		</div>
+		<!-- Main Footer -->
+		<%- include('../Layout/footer') %>
+		<!-- ./main Footer -->
+    </div>
+	<!-- ./wrapper -->
+	
+	<!-- REQUIRED SCRIPTS -->
+	<!-- jQuery -->
+	<script src="../plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- overlayScrollbars -->
+	<script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../dist/js/adminlte.js"></script>
+	
+	<!-- PAGE PLUGINS -->
+	<!-- jQuery Mapael -->
+	<script src="../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+	<script src="../plugins/raphael/raphael.min.js"></script>
+	<script src="../plugins/jquery-mapael/jquery.mapael.min.js"></script>
+	<script src="../plugins/jquery-mapael/maps/usa_states.min.js"></script>
+	
+	<!-- AdminLTE for demo purposes -->
+	<script src="../dist/js/demo.js"></script>
+	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+	<script src="../dist/js/pages/dashboard2.js"></script>
+	
+	
+	<!-- bs-custom-file-input -->
+	<script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../dist/js/adminlte.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="../dist/js/demo.js"></script>
+	<script>
+	$(function () {
+	  bsCustomFileInput.init();
+	});
+	</script>
+	
+	
+	<!-- Summernote -->
+	<script src="../plugins/summernote/summernote-bs4.min.js"></script>
+	<!-- Summernote -->
+	<script src="../plugins/summernote/summernote-bs4.min.js"></script>
+	<!-- CodeMirror -->
+	<script src="../plugins/codemirror/codemirror.js"></script>
+	<script src="../plugins/codemirror/mode/css/css.js"></script>
+	<script src="../plugins/codemirror/mode/xml/xml.js"></script>
+	<script src="../plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	
+	<script>
+	$(function () {
+		// Summernote
+		$('#summernote').summernote()
+
+		
+		$('#exampleInputFile').change((event)=>{
+			$('#imgProduct').html(`<img src="${URL.createObjectURL(event.target.files[0])}" class="product-image" alt="Product Image">`);
+		});
+	})
+	</script>
+</body>
+
+</html>
