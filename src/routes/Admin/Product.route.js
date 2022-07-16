@@ -28,26 +28,34 @@ var storage = multer.diskStorage({
     },
 });
 var upload = multer({ storage: storage });
+//
+router.get("/", async(req, res) => {
+    res.render("Admin/Dashboard.ejs");
+});
 // Product
 router.get("/Product", Product.get);
+router.get("/Product/All", Product.getAllElement);
 router.get("/Product/:id", Product.getById);
 router.post("/Product", upload.single("Storage"), Product.post);
 router.post("/Product/:id", upload.single("Storage"), Product.postById);
 router.get("/Product/Destroy/:id", Product.delete);
 // Parameter
 router.get("/Parameter", Parameter.get);
+router.get("/Parameter/All", Parameter.getAllElement);
 router.get("/Parameter/:id", Parameter.getById);
 router.post("/Parameter", Parameter.post);
 router.post("/Parameter/:id", Parameter.postById);
 router.get("/Parameter/Destroy/:id", Parameter.delete);
 // Color
 router.get("/Color", Color.get);
+router.get("/Color/All", Color.getAllElement);
 router.get("/Color/:id", Color.getById);
 router.post("/Color", Color.post);
 router.post("/Color/:id", Color.postById);
 router.get("/Color/Destroy/:id", Color.delete);
 // Option
 router.get("/Option", Option.get);
+router.get("/Option/All", Option.getAllElement);
 router.get("/Option/:id", Option.getById);
 router.post("/Option", Option.post);
 router.post("/Option/:id", Option.postById);

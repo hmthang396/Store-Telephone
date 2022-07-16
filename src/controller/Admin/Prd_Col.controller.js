@@ -1,6 +1,14 @@
 const db = require("../../models/index");
-const fs = require("fs").promises;
+const fs = require("fs");
 const path = require("path");
+
+function checkFileExists(file) {
+    return new Promise((resolve, reject) => {
+        fs.access(file, fs.constants.F_OK, (error) => {
+            resolve(!error);
+        });
+    });
+}
 module.exports = {
     get: async(req, res) => {
         try {
@@ -116,19 +124,43 @@ module.exports = {
                 },
             });
             if (prdColOld) {
-                await fs.unlink(
-                    path.join(__dirname, `../../public${prdColOld.dataValues.image1}`)
-                );
-                await fs.unlink(
-                    path.join(__dirname, `../../public${prdColOld.dataValues.image2}`)
-                );
-                await fs.unlink(
-                    path.join(__dirname, `../../public${prdColOld.dataValues.image3}`)
-                );
-                await fs.unlink(
-                    path.join(__dirname, `../../public${prdColOld.dataValues.image4}`)
-                );
-                console.log(req.files["file-input1"][0].filename);
+                if (
+                    await checkFileExists(
+                        path.join(__dirname, `../../public${prdColOld.dataValues.image1}`)
+                    )
+                ) {
+                    await fs.promises.unlink(
+                        path.join(__dirname, `../../public${prdColOld.dataValues.image1}`)
+                    );
+                }
+                if (
+                    await checkFileExists(
+                        path.join(__dirname, `../../public${prdColOld.dataValues.image2}`)
+                    )
+                ) {
+                    await fs.promises.unlink(
+                        path.join(__dirname, `../../public${prdColOld.dataValues.image2}`)
+                    );
+                }
+                if (
+                    await checkFileExists(
+                        path.join(__dirname, `../../public${prdColOld.dataValues.image3}`)
+                    )
+                ) {
+                    await fs.promises.unlink(
+                        path.join(__dirname, `../../public${prdColOld.dataValues.image3}`)
+                    );
+                }
+                if (
+                    await checkFileExists(
+                        path.join(__dirname, `../../public${prdColOld.dataValues.image4}`)
+                    )
+                ) {
+                    await fs.promises.unlink(
+                        path.join(__dirname, `../../public${prdColOld.dataValues.image4}`)
+                    );
+                }
+                //console.log(req.files["file-input1"][0].filename);
                 const image1 = `/Image/${req.files["file-input1"][0].filename}`;
                 const image2 = `/Image/${req.files["file-input2"][0].filename}`;
                 const image3 = `/Image/${req.files["file-input3"][0].filename}`;
@@ -168,7 +200,35 @@ module.exports = {
         }
     },
     delete: async(req, res) => {
-        try {} catch (err) {
+        try {
+            const prdColOld = await db.Prd_Col.findOne({
+                where: {
+                    id: req.params.id,
+                },
+            });
+            if (prdColOld) {
+                const prdColDelete = await db.Prd_Col.destroy({
+                    where: {
+                        id: req.params.id,
+                    },
+                });
+                if (prdColDelete) {
+                    res.redirect("/Admin/PrdCol");
+                } else {
+                    res.json({
+                        Data: null,
+                        ErrorCode: 4,
+                        Message: "Không tồn tại dữ liệu trong hệ thống",
+                    });
+                }
+            } else {
+                res.json({
+                    Data: [],
+                    ErrorCode: 4,
+                    Message: "Không tồn tại dữ liệu trong hệ thống",
+                });
+            }
+        } catch (err) {
             res.json({
                 Data: err,
                 ErrorCode: 99,

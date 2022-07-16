@@ -13,6 +13,26 @@ module.exports = {
             });
         }
     },
+    getAllElement: async(req, res) => {
+        try {
+            const parameters = await db.Parameter.findAll();
+            if (parameters.length > 0) {
+                res.render("Admin/Parameter.Table.ejs", {
+                    Parameters: parameters,
+                });
+            } else {
+                res.render("Admin/Parameter.Table.ejs", {
+                    Parameters: [],
+                });
+            }
+        } catch (err) {
+            res.json({
+                Data: err,
+                ErrorCode: 99,
+                Message: "Lỗi trong quá trình xử lý ",
+            });
+        }
+    },
     getById: async(req, res) => {
         try {
             const parameter = await db.Parameter.findOne({

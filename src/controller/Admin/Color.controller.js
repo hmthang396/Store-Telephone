@@ -13,6 +13,26 @@ module.exports = {
             });
         }
     },
+    getAllElement: async(req, res) => {
+        try {
+            const colors = await db.Color.findAll();
+            if (colors.length > 0) {
+                res.render("Admin/Color.Table.ejs", {
+                    Colors: colors,
+                });
+            } else {
+                res.render("Admin/Color.Table.ejs", {
+                    Colors: [],
+                });
+            }
+        } catch (err) {
+            res.json({
+                Data: err,
+                ErrorCode: 99,
+                Message: "Lỗi trong quá trình xử lý ",
+            });
+        }
+    },
     getById: async(req, res) => {
         try {
             const color = await db.Color.findOne({
