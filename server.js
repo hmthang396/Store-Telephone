@@ -44,11 +44,6 @@ console.log(publicDirectoryPath);
 app.use(express.static(publicDirectoryPath));
 app.use("/Admin", express.static(publicDirectoryPath));
 // Config URL-Router
-app.get("/Test/:id", async(req, res) => {
-    console.log(req.params.id);
-    console.log(req.body.id);
-    res.json({ data: [] });
-});
 
 app.use("/Category", Category);
 app.use("/Option", Option);

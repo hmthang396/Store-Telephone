@@ -26,6 +26,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         image: DataTypes.STRING,
         stock: DataTypes.SMALLINT,
+        viewer: DataTypes.DOUBLE,
     });
     return Product;
 };

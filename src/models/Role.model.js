@@ -6,7 +6,9 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true,
         },
-        name: DataTypes.ENUM("Administrator ", "Editor", "Customer"),
+        updateStatus: DataTypes.BOOLEAN,
+        createStatus: DataTypes.BOOLEAN,
+        deleteStatus: DataTypes.BOOLEAN,
     });
     return Role;
 };
