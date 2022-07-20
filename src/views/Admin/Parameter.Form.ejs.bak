@@ -542,7 +542,7 @@
 										</div>
 										<div class="form-group">
 											<label for="other_connector">Kết nối khác <code>*</code></label>
-											<textarea id="summernote7" name="other_connector" >
+											<textarea id="summernote7" name="other_connector" required>
 												<%= Parameter.other_connector %>
 											</textarea>
 										</div>

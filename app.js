@@ -1,21 +1,69 @@
 const Models = require("./src/models");
 const db = require("./src/models/index");
-
+const fs = require("fs");
 (async() => {
     try {
         await Models.sequelize.sync();
-        let category1 = await db.Category.create({ title: "Iphone" });
-        let category2 = await db.Category.create({ title: "Samsung" });
-        let category3 = await db.Category.create({ title: "Oppo" });
-        let category4 = await db.Category.create({ title: "Xiaomi" });
-        let category5 = await db.Category.create({ title: "Nokia" });
-        let category6 = await db.Category.create({ title: "Vivo" });
+        // await writeProduct();
+        // let category1 = await db.Category.create({ title: "Iphone" });
+        // let category2 = await db.Category.create({ title: "Samsung" });
+        // let category3 = await db.Category.create({ title: "Oppo" });
+        // let category4 = await db.Category.create({ title: "Xiaomi" });
+        // let category5 = await db.Category.create({ title: "Nokia" });
+        // let category6 = await db.Category.create({ title: "Vivo" });
         //await Import();
     } catch (error) {
         console.error(error);
     }
 })();
+const writeProduct = async() => {
+    const products = await db.Product.findAll();
+    const content = products.map((element) => {
+        return element.dataValues;
+    });
+    let configPath = "./Product.json";
+    if (fs.existsSync(configPath)) {
+        fs.writeFileSync(
+            configPath,
+            JSON.stringify(content),
+            "utf8",
+            function(err) {
+                if (err) {
+                    console.log("An error occured while writing JSON Object to File.");
+                    return console.log(err);
+                }
 
+                console.log("JSON file has been saved.");
+            }
+        );
+    }
+};
+const writeParameter = async() => {
+    try {
+        const parameters = await db.Parameter.findAll();
+        const content = parameters.map((p) => {
+            return p.dataValues;
+        });
+        let configPath = "./Paratemer.json";
+        if (fs.existsSync(configPath)) {
+            fs.writeFileSync(
+                configPath,
+                JSON.stringify(content),
+                "utf8",
+                function(err) {
+                    if (err) {
+                        console.log("An error occured while writing JSON Object to File.");
+                        return console.log(err);
+                    }
+
+                    console.log("JSON file has been saved.");
+                }
+            );
+        }
+    } catch (err) {
+        console.log(err);
+    }
+};
 const Import = async() => {
     try {
         // Create
