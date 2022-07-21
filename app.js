@@ -4,7 +4,7 @@ const fs = require("fs");
 (async() => {
     try {
         await Models.sequelize.sync();
-        // await writeProduct();
+        // await writePrd_Opt();
         // let category1 = await db.Category.create({ title: "Iphone" });
         // let category2 = await db.Category.create({ title: "Samsung" });
         // let category3 = await db.Category.create({ title: "Oppo" });
@@ -16,6 +16,94 @@ const fs = require("fs");
         console.error(error);
     }
 })();
+const writePrd_Opt = async() => {
+    const Prd_Opts = await db.Prd_Opt.findAll();
+    const content = Prd_Opts.map((element) => {
+        return element.dataValues;
+    });
+    let configPath = "./Product_Option.json";
+    if (fs.existsSync(configPath)) {
+        fs.writeFileSync(
+            configPath,
+            JSON.stringify(content),
+            "utf8",
+            function(err) {
+                if (err) {
+                    console.log("An error occured while writing JSON Object to File.");
+                    return console.log(err);
+                }
+
+                console.log("JSON file has been saved.");
+            }
+        );
+    }
+};
+const writePrd_Col = async() => {
+    const Prd_Cols = await db.Prd_Col.findAll();
+    const content = Prd_Cols.map((element) => {
+        return element.dataValues;
+    });
+    let configPath = "./Product_Color.json";
+    if (fs.existsSync(configPath)) {
+        fs.writeFileSync(
+            configPath,
+            JSON.stringify(content),
+            "utf8",
+            function(err) {
+                if (err) {
+                    console.log("An error occured while writing JSON Object to File.");
+                    return console.log(err);
+                }
+
+                console.log("JSON file has been saved.");
+            }
+        );
+    }
+};
+const writeColor = async() => {
+    const colors = await db.Color.findAll();
+    const content = colors.map((element) => {
+        return element.dataValues;
+    });
+    let configPath = "./Color.json";
+    if (fs.existsSync(configPath)) {
+        fs.writeFileSync(
+            configPath,
+            JSON.stringify(content),
+            "utf8",
+            function(err) {
+                if (err) {
+                    console.log("An error occured while writing JSON Object to File.");
+                    return console.log(err);
+                }
+
+                console.log("JSON file has been saved.");
+            }
+        );
+    }
+};
+const writeOption = async() => {
+    const options = await db.Option.findAll();
+    const content = options.map((element) => {
+        return element.dataValues;
+    });
+    let configPath = "./Option.json";
+    if (fs.existsSync(configPath)) {
+        fs.writeFileSync(
+            configPath,
+            JSON.stringify(content),
+            "utf8",
+            function(err) {
+                if (err) {
+                    console.log("An error occured while writing JSON Object to File.");
+                    return console.log(err);
+                }
+
+                console.log("JSON file has been saved.");
+            }
+        );
+    }
+};
 const writeProduct = async() => {
     const products = await db.Product.findAll();
     const content = products.map((element) => {

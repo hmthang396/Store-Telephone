@@ -1,0 +1,141 @@
+[{
+        "id": 1,
+        "title": "64GB",
+        "description": "64GB",
+        "createdAt": "2022-07-21T08:02:32.000Z",
+        "updatedAt": "2022-07-21T08:14:31.000Z"
+    },
+    {
+        "id": 2,
+        "title": "128GB",
+        "description": "128GB",
+        "createdAt": "2022-07-21T08:14:23.000Z",
+        "updatedAt": "2022-07-21T08:14:23.000Z"
+    },
+    {
+        "id": 3,
+        "title": "256GB",
+        "description": "256GB",
+        "createdAt": "2022-07-21T08:14:45.000Z",
+        "updatedAt": "2022-07-21T08:14:45.000Z"
+    },
+    {
+        "id": 4,
+        "title": "512GB",
+        "description": "512GB",
+        "createdAt": "2022-07-21T08:14:56.000Z",
+        "updatedAt": "2022-07-21T08:14:56.000Z"
+    },
+    {
+        "id": 5,
+        "title": "1TB",
+        "description": "1TB",
+        "createdAt": "2022-07-21T08:15:05.000Z",
+        "updatedAt": "2022-07-21T08:15:05.000Z"
+    },
+    {
+        "id": 6,
+        "title": "8GB - 128GB",
+        "description": "8GB - 128GB",
+        "createdAt": "2022-07-21T08:15:26.000Z",
+        "updatedAt": "2022-07-21T08:17:25.000Z"
+    },
+    {
+        "id": 7,
+        "title": "12GB - 256GB",
+        "description": "12GB - 256GB",
+        "createdAt": "2022-07-21T08:15:44.000Z",
+        "updatedAt": "2022-07-21T08:15:44.000Z"
+    },
+    {
+        "id": 8,
+        "title": "12GB - 512GB",
+        "description": "12GB - 512GB",
+        "createdAt": "2022-07-21T08:16:00.000Z",
+        "updatedAt": "2022-07-21T08:16:00.000Z"
+    },
+    {
+        "id": 9,
+        "title": "8GB - 256GB",
+        "description": "8GB - 256GB",
+        "createdAt": "2022-07-21T08:17:42.000Z",
+        "updatedAt": "2022-07-21T08:17:42.000Z"
+    },
+    {
+        "id": 10,
+        "title": "6GB - 128GB",
+        "description": "6GB - 128GB",
+        "createdAt": "2022-07-21T08:18:50.000Z",
+        "updatedAt": "2022-07-21T08:18:50.000Z"
+    },
+    {
+        "id": 11,
+        "title": "Mạng 4G",
+        "description": "Mạng 4G",
+        "createdAt": "2022-07-21T08:19:23.000Z",
+        "updatedAt": "2022-07-21T08:19:23.000Z"
+    },
+    {
+        "id": 12,
+        "title": "Mạng 5G",
+        "description": "Mạng 5G",
+        "createdAt": "2022-07-21T08:19:30.000Z",
+        "updatedAt": "2022-07-21T08:19:30.000Z"
+    },
+    {
+        "id": 13,
+        "title": "RAM 4G",
+        "description": "RAM 4G",
+        "createdAt": "2022-07-21T08:19:35.000Z",
+        "updatedAt": "2022-07-21T08:19:35.000Z"
+    },
+    {
+        "id": 14,
+        "title": "RAM 6G",
+        "description": "RAM 6G",
+        "createdAt": "2022-07-21T08:19:41.000Z",
+        "updatedAt": "2022-07-21T08:19:41.000Z"
+    },
+    {
+        "id": 15,
+        "title": "RAM 8G",
+        "description": "RAM 8G",
+        "createdAt": "2022-07-21T08:19:48.000Z",
+        "updatedAt": "2022-07-21T08:19:48.000Z"
+    },
+    {
+        "id": 16,
+        "title": "3GB - 64GB",
+        "description": "3GB - 64GB",
+        "createdAt": "2022-07-21T08:24:00.000Z",
+        "updatedAt": "2022-07-21T08:24:00.000Z"
+    },
+    {
+        "id": 17,
+        "title": "4GB - 128GB",
+        "description": "4GB - 128GB",
+        "createdAt": "2022-07-21T08:24:52.000Z",
+        "updatedAt": "2022-07-21T08:24:52.000Z"
+    },
+    {
+        "id": 18,
+        "title": "32GB",
+        "description": "32GB",
+        "createdAt": "2022-07-21T08:26:20.000Z",
+        "updatedAt": "2022-07-21T08:26:20.000Z"
+    },
+    {
+        "id": 19,
+        "title": "4GB - 64GB",
+        "description": "4GB - 64GB",
+        "createdAt": "2022-07-21T09:06:34.000Z",
+        "updatedAt": "2022-07-21T09:06:34.000Z"
+    },
+    {
+        "id": 20,
+        "title": "3GB - 32GB",
+        "description": "3GB - 32GB",
+        "createdAt": "2022-07-21T09:07:15.000Z",
+        "updatedAt": "2022-07-21T09:07:15.000Z"
+    }
+]
