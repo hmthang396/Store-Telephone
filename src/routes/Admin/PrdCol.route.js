@@ -3,7 +3,7 @@ const multer = require("multer");
 const path = require("path");
 express().set("view engine", "ejs");
 var router = express.Router();
-const Product = require("../../controller/Admin/Product.controller");
+const PrdCol = require("../../controller/Admin/Prd_Col.controller");
 //File img
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -23,11 +23,28 @@ var storage = multer.diskStorage({
     },
 });
 var upload = multer({ storage: storage });
-// Product
-router.get("/", Product.get);
-router.get("/All", Product.getAllElement);
-router.get("/:id", Product.getById);
-router.post("/", upload.single("Storage"), Product.post);
-router.post("/:id", upload.single("Storage"), Product.postById);
-router.get("/Destroy/:id", Product.delete);
+// Product & Image
+router.get("/", PrdCol.get);
+router.get("/:id", PrdCol.getById);
+router.post(
+    "/",
+    upload.fields([
+        { name: "file-input1", maxCount: 1 },
+        { name: "file-input2", maxCount: 1 },
+        { name: "file-input3", maxCount: 1 },
+        { name: "file-input4", maxCount: 1 },
+    ]),
+    PrdCol.post
+);
+router.post(
+    "/:id",
+    upload.fields([
+        { name: "file-input1", maxCount: 1 },
+        { name: "file-input2", maxCount: 1 },
+        { name: "file-input3", maxCount: 1 },
+        { name: "file-input4", maxCount: 1 },
+    ]),
+    PrdCol.postById
+);
+router.get("/Destroy/:id", PrdCol.delete);
 module.exports = router;

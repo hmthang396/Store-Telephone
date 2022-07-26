@@ -4,14 +4,9 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const Models = require("./src/models");
 // Router API
-const Category = require("./src/routes/Category.route");
-const Option = require("./src/routes/Option.route");
-const Color = require("./src/routes/Color.route");
-const Product = require("./src/routes/Product.route");
-const Parameter = require("./src/routes/Parameter.route");
-const Discount = require("./src/routes/Discount.route");
+const API = require("./src/routes/index");
 // Routes Admin
-const ProductAdmin = require("./src/routes/Admin/Product.route");
+const Admin = require("./src/routes/Admin/index");
 // Connect to Database
 (async() => {
     try {
@@ -22,7 +17,6 @@ const ProductAdmin = require("./src/routes/Admin/Product.route");
 })();
 // Configuration Server
 const app = express();
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -44,18 +38,12 @@ console.log(publicDirectoryPath);
 app.use(express.static(publicDirectoryPath));
 app.use("/Admin", express.static(publicDirectoryPath));
 // Config URL-Router
-
-app.use("/Category", Category);
-app.use("/Option", Option);
-app.use("/Color", Color);
-app.use("/Parameter", Parameter);
-app.use("/Product", Product);
-app.use("/Discount", Discount);
-app.use("/Admin", ProductAdmin);
+app.use("/API", API);
+app.use("/Admin", Admin);
 app.use(function(req, res, next) {
     next(createError(404));
 });
-// error handler
+// Error Handler
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;

@@ -1,0 +1,15 @@
+var express = require("express");
+var router = express.Router();
+const Category = require("./Category.route");
+const Product = require("./Product.route");
+const Color = require("./Color.route");
+const Discount = require("./Discount.route");
+const Option = require("./Option.route");
+const Parameter = require("./Parameter.route");
+router.use("/Category", Category);
+router.use("/Product", Product);
+router.use("/Color", Color);
+router.use("/Discount", Discount);
+router.use("/Option", Option);
+router.use("/Parameter", Parameter);
+module.exports = router;
