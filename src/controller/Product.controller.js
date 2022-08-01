@@ -52,7 +52,7 @@ module.exports = {
                         }),
                     };
                 });
-                res.json({
+                res.send({
                     Data: Detail,
                     ErrorCode: 0,
                     Message: "Thành công",
